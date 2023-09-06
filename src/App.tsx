@@ -12,6 +12,7 @@ function App() {
   const [count, setCount] = useState<number>(1)
   const [itemChecked, setItemChecked] = useState<boolean>(false)
 
+  // check状態を取得し、booleanで返す
   const handleToggleCheck = (id: number) => {
     setItemList((PrevItemList) => {
       return PrevItemList.map((prevItem) => {
@@ -24,6 +25,7 @@ function App() {
     })
   }
 
+  // アイテム追加
   const handleClick = () => {
     setCount(count => count + 1)
     const d = new Date()
@@ -37,11 +39,13 @@ function App() {
     setInputValue("")
   }
 
+  // アイテム削除
   const handleDelete = (id: number) => {
     const updatedItemList = itemList.filter(item => item.id !== id)
     setItemList(updatedItemList)
   }
 
+  // 完了したアイテムが先に来るよう並び替える
   const handleCompleted = () => {
     const itemListClone = [...itemList];
     itemListClone.sort((a, b) => {
@@ -56,21 +60,24 @@ function App() {
     setItemList(itemListClone)
   }
 
+  // 完了していないアイテムが先に来るよう並び替える
   const handleIncompleted = () => {
     const itemListClone = [...itemList];
     itemListClone.sort((a, b) => a.id - b.id);
     setItemList(itemListClone);
   }
 
+  // 完了したアイテムだけを表示するようフィルター
   const handleFilterCompleted = () => {
     const checkedItemList = itemList.filter(item => item.check)
-    if (checkedItemList.length === 0) {
+    if (checkedItemList.length === itemList.length) {
       alert("未完了のアイテムはありません")
     } else {
       setItemList(checkedItemList);
     }
   }
 
+  // 完了していないアイテムだけを表示するようフィルター
   const handleFilterIncompleted = () => {
     const uncheckedItemList = itemList.filter(item => !item.check)
     if (uncheckedItemList.length === itemList.length) {

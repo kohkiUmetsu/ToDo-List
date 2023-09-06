@@ -11,7 +11,7 @@ interface InputItemProps {
   handleToggleCheck: (id: number, check: boolean) => void
 }
 
-const InputItem: React.FC<InputItemProps> = ({handleClick, handleDelete, inputValue, setInputValue, itemChecked, setItemChecked, handleToggleCheck}) => {
+const InputItem: React.FC<InputItemProps> = ({handleClick, handleDelete, inputValue, setInputValue, handleToggleCheck}) => {
 
   const [itemList, setItemList] = useRecoilState<ItemInterface[]>(ItemListState)
 
@@ -42,7 +42,7 @@ const InputItem: React.FC<InputItemProps> = ({handleClick, handleDelete, inputVa
             </tr>
             </thead>
             <tbody>
-            {itemList.map((item: ItemInterface, index) =>(
+            {itemList.map((item: ItemInterface, index: number) =>(
               <tr key={index}>
                 <th className=''><input type="checkbox" className="checkbox my-auto block" onChange={() => handleToggleCheck(item.id, item.check)} checked={item.check}/></th>
                 <td>{item.id}</td>

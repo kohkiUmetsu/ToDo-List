@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 
 test ('add item', () => {
     // レンダリング
-  const { getByText, getByPlaceholderText } = render(InputItem);
+  const { getByText, getByPlaceholderText } = render(<InputItem />);
 
   // 入力フィールドとボタンを取得
   const inputField = getByPlaceholderText('タスクを入力...')
